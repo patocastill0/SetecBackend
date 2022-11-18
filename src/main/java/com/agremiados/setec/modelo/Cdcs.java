@@ -33,6 +33,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Cdcs.findByNombreCdc", query = "SELECT c FROM Cdcs c WHERE c.nombreCdc = :nombreCdc")})
 public class Cdcs implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdc")
+    private List<TrabajadorCurso> trabajadorCursoList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -105,6 +108,16 @@ public class Cdcs implements Serializable {
     @Override
     public String toString() {
         return "com.agremiados.setec.modelo.Cdcs[ idCdcs=" + idCdcs + " ]";
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public List<TrabajadorCurso> getTrabajadorCursoList() {
+        return trabajadorCursoList;
+    }
+
+    public void setTrabajadorCursoList(List<TrabajadorCurso> trabajadorCursoList) {
+        this.trabajadorCursoList = trabajadorCursoList;
     }
     
 }

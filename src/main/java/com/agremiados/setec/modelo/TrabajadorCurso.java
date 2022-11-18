@@ -36,6 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TrabajadorCurso.findByPeriodo", query = "SELECT t FROM TrabajadorCurso t WHERE t.periodo = :periodo")})
 public class TrabajadorCurso implements Serializable {
 
+    @JoinColumn(name = "cdc", referencedColumnName = "id_cdcs")
+    @ManyToOne(optional = false)
+    private Cdcs cdc;
+    
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,9 +63,9 @@ public class TrabajadorCurso implements Serializable {
     @Basic(optional = false)
     @Column(name = "periodo")
     private String periodo;
-    @JoinColumn(name = "curso", referencedColumnName = "idcurso")
+    @JoinColumn(name = "idcurso", referencedColumnName = "idcurso")
     @ManyToOne(optional = false)
-    private Curso curso;
+    private Curso idcurso;
     @JoinColumn(name = "idtrabajador", referencedColumnName = "idtrabajador")
     @ManyToOne(optional = false)
     private Trabajador idtrabajador;
@@ -128,13 +134,6 @@ public class TrabajadorCurso implements Serializable {
         this.periodo = periodo;
     }
 
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
 
     public Trabajador getIdtrabajador() {
         return idtrabajador;
@@ -167,6 +166,22 @@ public class TrabajadorCurso implements Serializable {
     @Override
     public String toString() {
         return "com.agremiados.setec.modelo.TrabajadorCurso[ idtrabajadorCurso=" + idtrabajadorCurso + " ]";
+    }
+
+    public Cdcs getCdc() {
+        return cdc;
+    }
+
+    public void setCdc(Cdcs cdc) {
+        this.cdc = cdc;
+    }
+
+    public Curso getIdcurso() {
+        return idcurso;
+    }
+
+    public void setIdcurso(Curso idcurso) {
+        this.idcurso = idcurso;
     }
     
 }

@@ -87,7 +87,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
             TrabajadorDTO tipotrabajador= mapearDTO(nuevoTrabajador);
   
         return tipotrabajador;
-        }
+        }   
         return null;     
     }
     

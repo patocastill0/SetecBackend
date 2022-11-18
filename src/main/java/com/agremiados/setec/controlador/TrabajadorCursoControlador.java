@@ -5,8 +5,11 @@
  */
 package com.agremiados.setec.controlador;
 
+import com.agremiados.setec.dto.CursoDTO;
 import com.agremiados.setec.dto.TrabajadorCursoDTO;
+import com.agremiados.setec.servicios.CursoServicioImpl;
 import com.agremiados.setec.servicios.TrabajadorCursoServicioImpl;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +27,18 @@ public class TrabajadorCursoControlador {
     
     @Autowired
     private TrabajadorCursoServicioImpl trabajadorcursoservicio;
+    @Autowired
+    private CursoServicioImpl cursoservicio;
     
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<TrabajadorCursoDTO> findById(@PathVariable(name="id")String id){
         return ResponseEntity.ok(trabajadorcursoservicio.findById(id));
     } 
+    
+    @GetMapping("/curso")
+    public List<CursoDTO> listarcurso(){
+        return cursoservicio.findAll();
+    }
     
     @PostMapping()
     public ResponseEntity<TrabajadorCursoDTO> crearCurso(@RequestBody TrabajadorCursoDTO trabajadorcursodto){

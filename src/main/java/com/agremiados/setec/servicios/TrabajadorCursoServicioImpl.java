@@ -37,8 +37,8 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
         TrabajadorCurso trabajadorcurso= trabajadorcursodao.findById(Integer.parseInt(id)).orElse(null);
         TrabajadorCursoDTO trabajadorcursodto=  
                 new TrabajadorCursoDTO(trabajadorcurso.getIdtrabajadorCurso(), trabajadorcurso.getAnio(), trabajadorcurso.getCodigocurso(),
-                trabajadorcurso.getHoraFin(), trabajadorcurso.getHoraInicio(), trabajadorcurso.getPeriodo(), trabajadorcurso.getCurso().getIdcurso(),
-                trabajadorcurso.getCurso().getNombreCurso(),trabajadorcurso.getIdtrabajador().getIdtrabajador());
+                trabajadorcurso.getHoraFin(), trabajadorcurso.getHoraInicio(), trabajadorcurso.getPeriodo(), trabajadorcurso.getIdcurso().getIdcurso(),
+                trabajadorcurso.getIdcurso().getNombreCurso(),trabajadorcurso.getIdtrabajador().getIdtrabajador());
         return trabajadorcursodto;
     }   
 
@@ -90,7 +90,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
         trabajacursoDTO.setHoraFin(trabajadorcurso.getHoraFin());
         trabajacursoDTO.setHoraInicio(trabajadorcurso.getHoraInicio());
         trabajacursoDTO.setPeriodo(trabajadorcurso.getPeriodo());
-        trabajacursoDTO.setCurso(trabajadorcurso.getCurso().getIdcurso());
+        trabajacursoDTO.setIdcurso(trabajadorcurso.getIdcurso().getIdcurso());
         //trabajacursoDTO.setNombrecurso(trabajadorcurso.getIdcurso().getNombreCurso());
         trabajacursoDTO.setIdtrabajador(trabajadorcurso.getIdtrabajador().getIdtrabajador());
         
@@ -100,7 +100,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
     private TrabajadorCurso mapearEntidad(TrabajadorCursoDTO trabajadorcursodto){
         TrabajadorCurso trabajadorcurso = new TrabajadorCurso();
         
-        Curso cursos = cursodao.findById(trabajadorcursodto.getCurso()).orElse(null);
+        Curso cursos = cursodao.findById(trabajadorcursodto.getIdurso()).orElse(null);  
         Trabajador trabajador= trabajadordao.findById(trabajadorcursodto.getIdtrabajador()).orElse(null);
         
         
@@ -110,7 +110,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
         trabajadorcurso.setHoraInicio(trabajadorcursodto.getHoraInicio());
         trabajadorcurso.setPeriodo(trabajadorcursodto.getPeriodo());
         
-        trabajadorcurso.setCurso(cursos);       
+        trabajadorcurso.setIdcurso(cursos);       
         trabajadorcurso.setIdtrabajador(trabajador);
         
          
@@ -126,7 +126,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
        
        for(TrabajadorCurso trabajadorcurso : listaCursos){
            if(trabajadorcurso.getCodigocurso()!=null){
-               curso=trabajadorcurso.getCurso().getIdcurso();
+               curso=trabajadorcurso.getIdcurso().getIdcurso();
                
                listaCursosDTO.add(new TrabajadorCursoDTO(
                trabajadorcurso.getIdtrabajadorCurso(),
@@ -135,8 +135,8 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
                trabajadorcurso.getHoraFin(),
                trabajadorcurso.getHoraInicio(),
                trabajadorcurso.getPeriodo(),
-               trabajadorcurso.getCurso().getIdcurso(),
-               trabajadorcurso.getCurso().getNombreCurso(),
+               trabajadorcurso.getIdcurso().getIdcurso(),
+               trabajadorcurso.getIdcurso().getNombreCurso(),
                trabajadorcurso.getIdtrabajador().getIdtrabajador()
                ));
            }

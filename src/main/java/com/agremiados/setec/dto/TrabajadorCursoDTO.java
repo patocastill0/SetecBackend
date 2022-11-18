@@ -10,7 +10,7 @@ public class TrabajadorCursoDTO {
     private String horaFin;
     private String horaInicio;
     private String periodo;
-    private Integer curso;
+    private Integer idcurso;
     private String nombrecurso;
     private String idtrabajador;
     
@@ -18,14 +18,14 @@ public class TrabajadorCursoDTO {
         
     }
 
-    public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer curso, String nombrecurso, String idtrabajador) {
+    public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer idcurso, String nombrecurso, String idtrabajador) {
         this.idtrabajadorCurso = idtrabajadorCurso;
         this.anio = anio;
         this.codigocurso = codigocurso;
         this.horaFin = horaFin;
         this.horaInicio = horaInicio;
         this.periodo = periodo;
-        this.curso = curso;
+        this.idcurso = idcurso;
         this.nombrecurso = nombrecurso;
         this.idtrabajador = idtrabajador;
         
@@ -82,12 +82,12 @@ public class TrabajadorCursoDTO {
         this.periodo = periodo;
     }
 
-    public Integer getCurso() {
-        return curso;
+    public Integer getIdurso() {
+        return idcurso;
     }
 
-    public void setCurso(Integer curso) {
-        this.curso = curso;
+    public void setIdcurso(Integer idcurso) {
+        this.idcurso = idcurso;
     }
 
     public String getIdtrabajador() {
