@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.agremiados_setec_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.agremiados.setec.modelo.Cargo</class>
+    <class>com.agremiados.setec.modelo.Region</class>
+    <class>com.agremiados.setec.modelo.Municipios</class>
+    <class>com.agremiados.setec.modelo.Roles</class>
+    <class>com.agremiados.setec.modelo.Sector</class>
+    <class>com.agremiados.setec.modelo.Curso</class>
+    <class>com.agremiados.setec.modelo.Persona</class>
+    <class>com.agremiados.setec.modelo.Usuario</class>
+    <class>com.agremiados.setec.modelo.Trabajador</class>
+    <class>com.agremiados.setec.modelo.Clua</class>
+    <class>com.agremiados.setec.modelo.TrabajadorCurso</class>
+    <class>com.agremiados.setec.modelo.Cdcs</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/basesetec?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+    </properties>
+  </persistence-unit>
+</persistence>
