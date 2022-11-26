@@ -52,6 +52,11 @@ public class TrabajadorControlador {
     public ResponseEntity<SectorDTO> findByIDSector(@PathVariable(name="id")String id){
         return ResponseEntity.ok(sectorser.findById(id));
     }
+
+    @GetMapping("/term/{term}")
+    public List<TrabajadorDTO> findByTerm(@PathVariable(name="term")String term){
+        return trabajadorser.findByTerm(term);
+    }
     
     @GetMapping("/cargo/{id}")
     public ResponseEntity<CargoDTO> findByIDCargo(@PathVariable(name="id")String id){

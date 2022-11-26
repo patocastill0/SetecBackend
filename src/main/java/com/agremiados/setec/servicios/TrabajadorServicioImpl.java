@@ -69,6 +69,29 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         return trabajadordto;   
     }
 
+    public List<TrabajadorDTO> findByTerm(String term) {
+        String clua=" ";
+        List<Trabajador> listaTrabajadores = trabajadordao.findByTerm(term,term,term,term,term);
+        List<TrabajadorDTO> listaTrabajadorDTO= new ArrayList<>();
+
+        for (Trabajador trabajador : listaTrabajadores) {
+            if(trabajador.getClua()!=null){
+                clua=trabajador.getClua().getIdclua();
+            }
+            listaTrabajadorDTO.add(new TrabajadorDTO(
+                    trabajador.getIdtrabajador(), trabajador.getSector().getIdsector(), trabajador.getCargo().getIdcargo(), trabajador.getRegion().getClaveRegion(),
+                    clua, trabajador.getCdc().getIdCdcs(), trabajador.getFolio(), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(),
+                    trabajador.getPersona().getCalle(), trabajador.getPersona().getCelular(), trabajador.getPersona().getClaveElector(), trabajador.getPersona().getColonia(),
+                    trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(),
+                    trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
+                    trabajador.getPersona().getSeccion(), trabajador.getPersona().getTelCasa(), trabajador.getPersona().getTipoSanguineo(), trabajador.getPersona().getTwitter(),
+                    trabajador.getPersona().getMunicipio().getNombreMunicipio()));
+        }
+
+        return listaTrabajadorDTO;
+
+    }
+
     @Override
     public TrabajadorDTO save(TrabajadorDTO trabajadordto) {
         Trabajador trabajador= mapearEntidad(trabajadordto);
