@@ -33,7 +33,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "Trabajador.findAll", query = "SELECT t FROM Trabajador t"),
     @NamedQuery(name = "Trabajador.findByIdtrabajador", query = "SELECT t FROM Trabajador t WHERE t.idtrabajador = :idtrabajador"),
-    @NamedQuery(name = "Trabajador.findByFolio", query = "SELECT t FROM Trabajador t WHERE t.folio = :folio")})
+    @NamedQuery(name = "Trabajador.findByFolio", query = "SELECT t FROM Trabajador t WHERE t.folio = :folio"),
+    @NamedQuery(name = "Trabajador.findByTerm", query = "SELECT t FROM Trabajador t WHERE UPPER(t.persona.curp) like CONCAT(UPPER(:curp),'%') or UPPER(t.persona.apMaterno) like CONCAT(UPPER(:amaterno),'%') or UPPER(t.persona.apPaterno) like CONCAT(UPPER(:apaterno),'%') or UPPER(t.persona.nombre) like CONCAT(UPPER(:nombre),'%') or CONCAT(UPPER(t.persona.nombre),' ',UPPER(t.persona.apPaterno),' ',UPPER(t.persona.apMaterno)) like CONCAT(UPPER(:nombreC),'%')")})
 public class Trabajador implements Serializable {
 
     private static final long serialVersionUID = 1L;
