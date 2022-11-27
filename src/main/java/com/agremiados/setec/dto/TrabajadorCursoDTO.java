@@ -13,12 +13,15 @@ public class TrabajadorCursoDTO {
     private Integer idcurso;
     private String nombrecurso;
     private String idtrabajador;
+
+    private String nombreTrabajador;
     
     public TrabajadorCursoDTO() {
         
     }
 
-    public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer idcurso, String nombrecurso, String idtrabajador) {
+    public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer idcurso, String nombrecurso, String idtrabajador,
+                              String nombreTrabajador) {
         this.idtrabajadorCurso = idtrabajadorCurso;
         this.anio = anio;
         this.codigocurso = codigocurso;
@@ -28,6 +31,7 @@ public class TrabajadorCursoDTO {
         this.idcurso = idcurso;
         this.nombrecurso = nombrecurso;
         this.idtrabajador = idtrabajador;
+        this.nombreTrabajador=nombreTrabajador;
         
     }
 
@@ -104,6 +108,17 @@ public class TrabajadorCursoDTO {
     
     public void setIdtrabajador(String idtrabajador) {
         this.idtrabajador = idtrabajador;
-    }      
-    
+    }
+
+    public Integer getIdcurso() {
+        return idcurso;
+    }
+
+    public String getNombreTrabajador() {
+        return nombreTrabajador;
+    }
+
+    public void setNombreTrabajador(String nombreTrabajador) {
+        this.nombreTrabajador = nombreTrabajador;
+    }
 }
