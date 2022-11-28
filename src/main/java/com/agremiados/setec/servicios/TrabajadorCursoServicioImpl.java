@@ -38,7 +38,10 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
         TrabajadorCursoDTO trabajadorcursodto=  
                 new TrabajadorCursoDTO(trabajadorcurso.getIdtrabajadorCurso(), trabajadorcurso.getAnio(), trabajadorcurso.getCodigocurso(),
                 trabajadorcurso.getHoraFin(), trabajadorcurso.getHoraInicio(), trabajadorcurso.getPeriodo(), trabajadorcurso.getIdcurso().getIdcurso(),
-                trabajadorcurso.getIdcurso().getNombreCurso(),trabajadorcurso.getIdtrabajador().getIdtrabajador());
+                trabajadorcurso.getIdcurso().getNombreCurso(),trabajadorcurso.getIdtrabajador().getIdtrabajador(),
+                        trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
+                        " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
+                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno());
         return trabajadorcursodto;
     }   
 
@@ -137,7 +140,10 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
                trabajadorcurso.getPeriodo(),
                trabajadorcurso.getIdcurso().getIdcurso(),
                trabajadorcurso.getIdcurso().getNombreCurso(),
-               trabajadorcurso.getIdtrabajador().getIdtrabajador()
+               trabajadorcurso.getIdtrabajador().getIdtrabajador(),
+                       trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
+                               " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
+                               trabajadorcurso.getIdtrabajador().getPersona().getApMaterno()
                ));
            }
        }
@@ -152,5 +158,34 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
        
        
        return entidadrespuesta;
+    }
+
+    public List<TrabajadorCursoDTO>findCusosByTrabajador(String curp){
+        Integer curso;
+        List<TrabajadorCurso> listaCursos = trabajadorcursodao.findCusosByTrabajador(curp);
+        List<TrabajadorCursoDTO> listaCursosDTO= new ArrayList<>();
+
+        for(TrabajadorCurso trabajadorcurso : listaCursos){
+            if(trabajadorcurso.getCodigocurso()!=null){
+                curso=trabajadorcurso.getIdcurso().getIdcurso();
+
+                listaCursosDTO.add(new TrabajadorCursoDTO(
+                        trabajadorcurso.getIdtrabajadorCurso(),
+                        trabajadorcurso.getAnio(),
+                        trabajadorcurso.getCodigocurso(),
+                        trabajadorcurso.getHoraFin(),
+                        trabajadorcurso.getHoraInicio(),
+                        trabajadorcurso.getPeriodo(),
+                        trabajadorcurso.getIdcurso().getIdcurso(),
+                        trabajadorcurso.getIdcurso().getNombreCurso(),
+                        trabajadorcurso.getIdtrabajador().getIdtrabajador(),
+                        trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
+                                " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
+                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno()
+                ));
+            }
+        }
+
+        return listaCursosDTO;
     }
 }

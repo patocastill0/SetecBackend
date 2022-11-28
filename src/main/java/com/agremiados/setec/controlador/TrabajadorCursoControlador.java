@@ -39,6 +39,11 @@ public class TrabajadorCursoControlador {
     public List<CursoDTO> listarcurso(){
         return cursoservicio.findAll();
     }
+
+    @GetMapping("/cursos/id_trbajador/{id}")
+    public List<TrabajadorCursoDTO> cursosByTrabajador(@PathVariable(name="id")String id){
+        return trabajadorcursoservicio.findCusosByTrabajador(id);
+    }
     
     @PostMapping()
     public ResponseEntity<TrabajadorCursoDTO> crearCurso(@RequestBody TrabajadorCursoDTO trabajadorcursodto){
