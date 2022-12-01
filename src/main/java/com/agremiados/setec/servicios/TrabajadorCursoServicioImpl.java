@@ -5,12 +5,13 @@
  */
 package com.agremiados.setec.servicios;
 
+import com.agremiados.setec.dao.Cdcsdao;
 import com.agremiados.setec.dao.Cursodao;
 import com.agremiados.setec.dao.TrabajadorCursodao;
 import com.agremiados.setec.dao.Trabajadordao;
-import com.agremiados.setec.dto.TrabajadorCluaDTO;
 import com.agremiados.setec.dto.TrabajadorCursoDTO;
 import com.agremiados.setec.entidadrespuesta.entidadRespuesta;
+import com.agremiados.setec.modelo.Cdcs;
 import com.agremiados.setec.modelo.Curso;
 import com.agremiados.setec.modelo.Trabajador;
 import com.agremiados.setec.modelo.TrabajadorCurso;
@@ -30,6 +31,8 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
     private Trabajadordao trabajadordao;
     @Autowired
     private Cursodao cursodao;
+    @Autowired
+    private Cdcsdao cdcdao;
     
     
     @Override   
@@ -41,7 +44,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
                 trabajadorcurso.getIdcurso().getNombreCurso(),trabajadorcurso.getIdtrabajador().getIdtrabajador(),
                         trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
                         " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
-                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno());
+                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno(),trabajadorcurso.getCdc().getIdCdcs());
         return trabajadorcursodto;
     }   
 
@@ -101,21 +104,25 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
     }
     
     private TrabajadorCurso mapearEntidad(TrabajadorCursoDTO trabajadorcursodto){
+        //se mapean los datos de la tabla de la base de datos
         TrabajadorCurso trabajadorcurso = new TrabajadorCurso();
-        
-        Curso cursos = cursodao.findById(trabajadorcursodto.getIdurso()).orElse(null);  
-        Trabajador trabajador= trabajadordao.findById(trabajadorcursodto.getIdtrabajador()).orElse(null);
-        
+                     
+        //trabajadorcurso.setIdtrabajadorCurso(trabajadorcursodto.getIdtrabajadorCurso());
         
         trabajadorcurso.setAnio(trabajadorcursodto.getAnio());
         trabajadorcurso.setCodigocurso(trabajadorcursodto.getCodigocurso());
         trabajadorcurso.setHoraFin(trabajadorcursodto.getHoraFin());
         trabajadorcurso.setHoraInicio(trabajadorcursodto.getHoraInicio());
-        trabajadorcurso.setPeriodo(trabajadorcursodto.getPeriodo());
+        trabajadorcurso.setPeriodo(trabajadorcursodto.getPeriodo()); 
         
-        trabajadorcurso.setIdcurso(cursos);       
+        Curso cursos = cursodao.findById(trabajadorcursodto.getIdurso()).orElse(null);
+        trabajadorcurso.setIdcurso(cursos); 
+        
+        Trabajador trabajador= trabajadordao.findById(trabajadorcursodto.getIdtrabajador()).orElse(null);
         trabajadorcurso.setIdtrabajador(trabajador);
         
+        Cdcs cdc = cdcdao.findById(trabajadorcursodto.getCdc()).orElse(null);
+        trabajadorcurso.setCdc(cdc);
          
         return trabajadorcurso;
     }
@@ -143,7 +150,8 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
                trabajadorcurso.getIdtrabajador().getIdtrabajador(),
                        trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
                                " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
-                               trabajadorcurso.getIdtrabajador().getPersona().getApMaterno()
+                               trabajadorcurso.getIdtrabajador().getPersona().getApMaterno(),
+                       trabajadorcurso.getCdc().getIdCdcs()
                ));
            }
        }
@@ -181,7 +189,8 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
                         trabajadorcurso.getIdtrabajador().getIdtrabajador(),
                         trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
                                 " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
-                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno()
+                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno(),
+                        trabajadorcurso.getCdc().getIdCdcs()
                 ));
             }
         }

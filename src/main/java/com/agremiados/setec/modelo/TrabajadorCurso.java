@@ -44,6 +44,7 @@ public class TrabajadorCurso implements Serializable {
     
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

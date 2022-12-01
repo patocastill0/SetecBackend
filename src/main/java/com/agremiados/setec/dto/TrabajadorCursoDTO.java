@@ -12,16 +12,15 @@ public class TrabajadorCursoDTO {
     private String periodo;
     private Integer idcurso;
     private String nombrecurso;
-    private String idtrabajador;
-
+    private String idtrabajador;   
     private String nombreTrabajador;
-    
+    private Integer cdc;
     public TrabajadorCursoDTO() {
         
     }
 
     public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer idcurso, String nombrecurso, String idtrabajador,
-                              String nombreTrabajador) {
+                              String nombreTrabajador, Integer cdc) {
         this.idtrabajadorCurso = idtrabajadorCurso;
         this.anio = anio;
         this.codigocurso = codigocurso;
@@ -32,6 +31,7 @@ public class TrabajadorCursoDTO {
         this.nombrecurso = nombrecurso;
         this.idtrabajador = idtrabajador;
         this.nombreTrabajador=nombreTrabajador;
+        this.cdc=cdc;
         
     }
 
@@ -97,7 +97,9 @@ public class TrabajadorCursoDTO {
     public String getIdtrabajador() {
         return idtrabajador;
     }
-
+    public void setIdtrabajador(String idtrabajador) {
+        this.idtrabajador = idtrabajador;
+    }
     public String getNombrecurso() {
         return nombrecurso;
     }
@@ -106,13 +108,7 @@ public class TrabajadorCursoDTO {
         this.nombrecurso = nombrecurso;
     }
     
-    public void setIdtrabajador(String idtrabajador) {
-        this.idtrabajador = idtrabajador;
-    }
-
-    public Integer getIdcurso() {
-        return idcurso;
-    }
+    
 
     public String getNombreTrabajador() {
         return nombreTrabajador;
@@ -121,4 +117,13 @@ public class TrabajadorCursoDTO {
     public void setNombreTrabajador(String nombreTrabajador) {
         this.nombreTrabajador = nombreTrabajador;
     }
+
+    public Integer getCdc() {
+        return cdc;
+    }
+
+    public void setCdc(Integer cdc) {
+        this.cdc = cdc;
+    }
+    
 }
