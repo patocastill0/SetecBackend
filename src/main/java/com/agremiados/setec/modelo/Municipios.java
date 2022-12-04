@@ -31,7 +31,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Municipios.findAll", query = "SELECT m FROM Municipios m"),
     @NamedQuery(name = "Municipios.findByClavemunicipio", query = "SELECT m FROM Municipios m WHERE m.clavemunicipio = :clavemunicipio"),
     @NamedQuery(name = "Municipios.findByCabeceraMunicipal", query = "SELECT m FROM Municipios m WHERE m.cabeceraMunicipal = :cabeceraMunicipal"),
-    @NamedQuery(name = "Municipios.findByNombreMunicipio", query = "SELECT m FROM Municipios m WHERE m.nombreMunicipio = :nombreMunicipio")})
+    @NamedQuery(name = "Municipios.findByNombreMunicipio", query = "SELECT m FROM Municipios m WHERE m.nombreMunicipio = :nombreMunicipio"),
+    @NamedQuery(name = "Municipios.findByTerminoMunicipio", query = "SELECT m FROM Municipios m WHERE UPPER(m.nombreMunicipio) like CONCAT(UPPER(:nombremunicipio),'%') or UPPER(m.clavemunicipio) like CONCAT(UPPER(:clavemunicipio),'%')")})
+        
 public class Municipios implements Serializable {
 
     private static final long serialVersionUID = 1L;

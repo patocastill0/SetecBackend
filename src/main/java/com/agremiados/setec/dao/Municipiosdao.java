@@ -6,10 +6,15 @@
 package com.agremiados.setec.dao;
 
 import com.agremiados.setec.modelo.Municipios;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Municipiosdao extends JpaRepository<Municipios, String> {
-        
+    List<Municipios> findByTerminoMunicipio(
+            @Param("nombremunicipio")String nombremunicipio,
+            @Param("clavemunicipio")String clavemunicipio                   
+    );
 }
