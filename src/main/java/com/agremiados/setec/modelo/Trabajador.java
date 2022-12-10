@@ -45,6 +45,22 @@ public class Trabajador implements Serializable {
     @Basic(optional = false)
     @Column(name = "folio")
     private String folio;
+
+    @Basic(optional = false)
+    @Column(name = "hasactanacimiento")
+    private String hasactanacimiento;
+
+    @Basic(optional = false)
+    @Column(name = "hascomprobante")
+    private String hascomprobante;
+
+    @Basic(optional = false)
+    @Column(name = "hascurp")
+    private String hascurp;
+
+    @Basic(optional = false)
+    @Column(name = "hasine")
+    private String hasine;
     @JoinColumn(name = "cargo", referencedColumnName = "idcargo")
     @ManyToOne(optional = false)
     private Cargo cargo;
