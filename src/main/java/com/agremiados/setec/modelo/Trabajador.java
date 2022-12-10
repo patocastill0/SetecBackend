@@ -96,6 +96,40 @@ public class Trabajador implements Serializable {
         this.folio = folio;
     }
 
+    public boolean isHasactanacimiento() {
+        return hasactanacimiento;
+    }
+
+    public void setHasactanacimiento(boolean hasactanacimiento) {
+        this.hasactanacimiento = hasactanacimiento;
+    }
+
+    public boolean isHascomprobante() {
+        return hascomprobante;
+    }
+
+    public void setHascomprobante(boolean hascomprobante) {
+        this.hascomprobante = hascomprobante;
+    }
+
+    public boolean isHascurp() {
+        return hascurp;
+    }
+
+    public void setHascurp(boolean hascurp) {
+        this.hascurp = hascurp;
+    }
+
+    public boolean isHasine() {
+        return hasine;
+    }
+
+    public void setHasine(boolean hasine) {
+        this.hasine = hasine;
+    }
+        
+    
+    
     public String getIdtrabajador() {
         return idtrabajador;
     }
