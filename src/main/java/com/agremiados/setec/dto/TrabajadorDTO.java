@@ -13,12 +13,21 @@ public class TrabajadorDTO extends PersonaDTO{
     private String clua;
     private Integer cdc;
     private String folio;
+    private boolean hasactanacimiento;
+    private boolean hascomprobante;
+    private boolean hascurp;
+    private boolean hasine;
     
     public TrabajadorDTO() {
         
     }
 
-    public TrabajadorDTO(String idtrabajador, String sector, String cargo, String region, String clua, Integer cdc, String folio, String curp, String apPaterno, String apMaterno, String calle, String celular, String claveElector, String colonia, String correoElectronico, String cp, Integer estadoCivil, String facebook, Date fechaNacimiento, char genero, String instagram, String localidad, String nombre, String numero, String seccion, String telCasa, String tipoSanguineo, String twitter, String municipio) {
+    public TrabajadorDTO(String idtrabajador, String sector, String cargo, String region, String clua, Integer cdc, String folio, String curp, String apPaterno, String apMaterno, String calle, String celular, String claveElector, String colonia, String correoElectronico, String cp, Integer estadoCivil, String facebook, Date fechaNacimiento, char genero, String instagram, String localidad, String nombre, String numero, String seccion, String telCasa, String tipoSanguineo, String twitter, String municipio,
+                         boolean hasactanacimiento,
+                         boolean hascomprobante,
+                         boolean hascurp,
+                         boolean hasine
+                         ) {
         super(curp, apPaterno, apMaterno, calle, celular, claveElector, colonia, correoElectronico, cp, estadoCivil, facebook, fechaNacimiento, genero, instagram, localidad, nombre, numero, seccion, telCasa, tipoSanguineo, twitter, municipio);
         this.idtrabajador = idtrabajador;
         this.sector = sector;
@@ -27,6 +36,10 @@ public class TrabajadorDTO extends PersonaDTO{
         this.clua = clua;
         this.cdc = cdc;
         this.folio = folio;
+        this.hasactanacimiento=hasactanacimiento;
+        this.hascomprobante=hascomprobante;
+        this.hascurp=hascurp;
+        this.hasine=hasine;
     }
 
    
@@ -86,5 +99,38 @@ public class TrabajadorDTO extends PersonaDTO{
     public void setCdc(Integer cdc) {
         this.cdc = cdc;
     }
-    
+
+
+
+    public boolean isHasactanacimiento() {
+        return hasactanacimiento;
+    }
+
+    public void setHasactanacimiento(boolean hasactanacimiento) {
+        this.hasactanacimiento = hasactanacimiento;
+    }
+
+    public boolean isHascomprobante() {
+        return hascomprobante;
+    }
+
+    public void setHascomprobante(boolean hascomprobante) {
+        this.hascomprobante = hascomprobante;
+    }
+
+    public boolean isHascurp() {
+        return hascurp;
+    }
+
+    public void setHascurp(boolean hascurp) {
+        this.hascurp = hascurp;
+    }
+
+    public boolean isHasine() {
+        return hasine;
+    }
+
+    public void setHasine(boolean hasine) {
+        this.hasine = hasine;
+    }
 }
