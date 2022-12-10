@@ -65,7 +65,11 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
                 trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(), 
                 trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
                 trabajador.getPersona().getSeccion(), trabajador.getPersona().getTelCasa(), trabajador.getPersona().getTipoSanguineo(), trabajador.getPersona().getTwitter(),
-                trabajador.getPersona().getMunicipio().getClavemunicipio());
+                trabajador.getPersona().getMunicipio().getClavemunicipio(),
+                trabajador.isHasactanacimiento(),
+                trabajador.isHascomprobante(),
+                trabajador.isHascurp(),
+                trabajador.isHasine());
         return trabajadordto;   
     }
 
@@ -85,7 +89,11 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
                     trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(),
                     trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
                     trabajador.getPersona().getSeccion(), trabajador.getPersona().getTelCasa(), trabajador.getPersona().getTipoSanguineo(), trabajador.getPersona().getTwitter(),
-                    trabajador.getPersona().getMunicipio().getNombreMunicipio()));
+                    trabajador.getPersona().getMunicipio().getNombreMunicipio(),
+                    trabajador.isHasactanacimiento(),
+                    trabajador.isHascomprobante(),
+                    trabajador.isHascurp(),
+                    trabajador.isHasine()));
         }
 
         return listaTrabajadorDTO;
@@ -141,7 +149,11 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
                 trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(), 
                 trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
                 trabajador.getPersona().getSeccion(), trabajador.getPersona().getTelCasa(), trabajador.getPersona().getTipoSanguineo(), trabajador.getPersona().getTwitter(),
-                trabajador.getPersona().getMunicipio().getNombreMunicipio()));
+                trabajador.getPersona().getMunicipio().getNombreMunicipio(),
+                    trabajador.isHasactanacimiento(),
+                    trabajador.isHascomprobante(),
+                    trabajador.isHascurp(),
+                    trabajador.isHasine()));
         }
         entidadRespuesta entidadrespuesta  = new entidadRespuesta();
         entidadrespuesta.setContenido(listaTrabajadorDTO);
@@ -196,6 +208,10 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         trabajadordto.setTipoSanguineo(trabajador.getPersona().getTipoSanguineo());
         trabajadordto.setTwitter(trabajador.getPersona().getTwitter());
         trabajadordto.setMunicipio(trabajador.getPersona().getMunicipio().getNombreMunicipio());
+        trabajadordto.setHasactanacimiento(trabajador.isHasactanacimiento());
+        trabajadordto.setHascomprobante(trabajador.isHascomprobante());
+        trabajadordto.setHascurp(trabajador.isHascurp());
+        trabajadordto.setHasine(trabajador.isHasine());
         
         return  trabajadordto;
     }
@@ -251,7 +267,11 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         Cdcs cdcs = cdcsdao.findById(trabajadordto.getCdc()).orElse(null);
         trabajador.setCdc(cdcs);
         
-        trabajador.setFolio(trabajadordto.getFolio());           
+        trabajador.setFolio(trabajadordto.getFolio());
+        trabajador.setHasactanacimiento(trabajadordto.isHasactanacimiento());
+        trabajador.setHascomprobante(trabajadordto.isHascomprobante());
+        trabajador.setHascurp(trabajadordto.isHascurp());
+        trabajador.setHasine(trabajadordto.isHasine());
                
         return  trabajador;
     }    
