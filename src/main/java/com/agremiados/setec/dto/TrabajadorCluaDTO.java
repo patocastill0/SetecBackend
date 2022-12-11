@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class TrabajadorCluaDTO {
     //usar los datos del ngfor
-    private String numAfiliacion;
+    private int numAfiliacion;
     private String numanioafiliacion;
     private String sector;
     private String cargo;
@@ -24,7 +24,7 @@ public class TrabajadorCluaDTO {
     public TrabajadorCluaDTO() {
     }
 
-    public TrabajadorCluaDTO(String numAfiliacion, String numanioafiliacion, String sector, String cargo, String claveMunicipio, String region, Date fecharegistro, String estado, Integer vigencia) {
+    public TrabajadorCluaDTO(int numAfiliacion, String numanioafiliacion, String sector, String cargo, String claveMunicipio, String region, Date fecharegistro, String estado, Integer vigencia) {
         this.numAfiliacion = numAfiliacion;
         this.numanioafiliacion = numanioafiliacion;
         this.sector = sector;
@@ -36,11 +36,11 @@ public class TrabajadorCluaDTO {
         this.vigencia = vigencia;
     }
 
-    public String getNumAfiliacion() {
+    public int getNumAfiliacion() {
         return numAfiliacion;
     }
 
-    public void setNumAfiliacion(String numAfiliacion) {
+    public void setNumAfiliacion(int numAfiliacion) {
         this.numAfiliacion = numAfiliacion;
     }
 
