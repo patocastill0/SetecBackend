@@ -60,7 +60,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         Trabajador trabajador=trabajadordao.findById(id).orElse(null);
         
         TrabajadorDTO trabajadordto = new TrabajadorDTO(trabajador.getIdtrabajador(), trabajador.getSector().getIdsector(), trabajador.getCargo().getIdcargo(), trabajador.getRegion().getClaveRegion(),
-                " ", trabajador.getCdc().getIdCdcs(), trabajador.getFolio(), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(), 
+                " ", trabajador.getCdc().getIdCdcs(),folio(trabajador.getFolio()), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(),
                 trabajador.getPersona().getCalle(), trabajador.getPersona().getCelular(), trabajador.getPersona().getClaveElector(), trabajador.getPersona().getColonia(),
                 trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(), 
                 trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
@@ -71,6 +71,15 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
                 trabajador.isHascurp(),
                 trabajador.isHasine());
         return trabajadordto;   
+    }
+
+    public String folio(int folio){
+        String numero=String.valueOf(folio);
+        String cadenaFolio="";
+        int tamanioTotal=numero.length()-5;
+        for(int i=0; i<tamanioTotal; i++)
+            cadenaFolio+="0";
+        return cadenaFolio+numero;
     }
 
     public List<TrabajadorDTO> findByTerm(String term) {
@@ -84,7 +93,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
             }
             listaTrabajadorDTO.add(new TrabajadorDTO(
                     trabajador.getIdtrabajador(), trabajador.getSector().getIdsector(), trabajador.getCargo().getIdcargo(), trabajador.getRegion().getClaveRegion(),
-                    clua, trabajador.getCdc().getIdCdcs(), trabajador.getFolio(), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(),
+                    clua, trabajador.getCdc().getIdCdcs(), folio(trabajador.getFolio()), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(),
                     trabajador.getPersona().getCalle(), trabajador.getPersona().getCelular(), trabajador.getPersona().getClaveElector(), trabajador.getPersona().getColonia(),
                     trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(),
                     trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
@@ -111,7 +120,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
     
     public Object crear(TrabajadorDTO trabajadorDTO) {
         if((trabajadordao.existsById(trabajadorDTO.getIdtrabajador())))
-            return 0;// significa que el empleado ya existe
+            return 0;// significa que el empleado ya existe por la curp
         if((!trabajadordao.existsById(trabajadorDTO.getIdtrabajador()))){
             Trabajador trabajador= mapearEntidad(trabajadorDTO);
             Trabajador nuevoTrabajador=trabajadordao.save(trabajador);
@@ -144,7 +153,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
             }
             listaTrabajadorDTO.add(new TrabajadorDTO(
             trabajador.getIdtrabajador(), trabajador.getSector().getIdsector(), trabajador.getCargo().getIdcargo(), trabajador.getRegion().getClaveRegion(),
-                clua, trabajador.getCdc().getIdCdcs(), trabajador.getFolio(), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(), 
+                clua, trabajador.getCdc().getIdCdcs(), folio(trabajador.getFolio()), trabajador.getPersona().getCurp() , trabajador.getPersona().getApPaterno(), trabajador.getPersona().getApMaterno(),
                 trabajador.getPersona().getCalle(), trabajador.getPersona().getCelular(), trabajador.getPersona().getClaveElector(), trabajador.getPersona().getColonia(),
                 trabajador.getPersona().getCorreoElectronico(), trabajador.getPersona().getCp(), trabajador.getPersona().getEstadoCivil(), trabajador.getPersona().getFacebook(), trabajador.getPersona().getFechaNacimiento(), 
                 trabajador.getPersona().getGenero(), trabajador.getPersona().getInstagram(), trabajador.getPersona().getLocalidad(), trabajador.getPersona().getNombre(), trabajador.getPersona().getNumero(),
@@ -185,7 +194,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         trabajadordto.setRegion(trabajador.getRegion().getNombreRegion());
         //trabajadordto.setClua(trabajador.getClua().getIdclua());
         trabajadordto.setCdc(trabajador.getCdc().getIdCdcs());
-        trabajadordto.setFolio(trabajador.getFolio());
+        trabajadordto.setFolio(folio(trabajador.getFolio()));
         trabajadordto.setCurp(trabajador.getPersona().getCurp());
         trabajadordto.setApPaterno(trabajador.getPersona().getApPaterno());
         trabajadordto.setApMaterno(trabajador.getPersona().getApMaterno());
@@ -267,7 +276,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         Cdcs cdcs = cdcsdao.findById(trabajadordto.getCdc()).orElse(null);
         trabajador.setCdc(cdcs);
         
-        trabajador.setFolio(trabajadordto.getFolio());
+        trabajador.setFolio(Integer.parseInt(trabajadordto.getFolio()));
         trabajador.setHasactanacimiento(trabajadordto.isHasactanacimiento());
         trabajador.setHascomprobante(trabajadordto.isHascomprobante());
         trabajador.setHascurp(trabajadordto.isHascurp());
