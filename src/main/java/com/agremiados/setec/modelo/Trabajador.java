@@ -7,18 +7,7 @@ package com.agremiados.setec.modelo;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -42,9 +31,9 @@ public class Trabajador implements Serializable {
     @Basic(optional = false)
     @Column(name = "idtrabajador")
     private String idtrabajador;
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "folio")
-    private String folio;
+    private int folio;
 
     @Basic(optional = false)
     @Column(name = "hasactanacimiento")
@@ -91,7 +80,7 @@ public class Trabajador implements Serializable {
         this.idtrabajador = idtrabajador;
     }
 
-    public Trabajador(String idtrabajador, String folio) {
+    public Trabajador(String idtrabajador, int folio) {
         this.idtrabajador = idtrabajador;
         this.folio = folio;
     }
@@ -104,11 +93,11 @@ public class Trabajador implements Serializable {
         this.idtrabajador = idtrabajador;
     }
 
-    public String getFolio() {
+    public int getFolio() {
         return folio;
     }
 
-    public void setFolio(String folio) {
+    public void setFolio(int folio) {
         this.folio = folio;
     }
 
