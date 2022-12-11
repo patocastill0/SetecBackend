@@ -193,38 +193,7 @@ public class Trabajador implements Serializable {
     public void setSector(Sector sector) {
         this.sector = sector;
     }
-
-    public boolean isHasactanacimiento() {
-        return hasactanacimiento;
-    }
-
-    public void setHasactanacimiento(boolean hasactanacimiento) {
-        this.hasactanacimiento = hasactanacimiento;
-    }
-
-    public boolean isHascomprobante() {
-        return hascomprobante;
-    }
-
-    public void setHascomprobante(boolean hascomprobante) {
-        this.hascomprobante = hascomprobante;
-    }
-
-    public boolean isHascurp() {
-        return hascurp;
-    }
-
-    public void setHascurp(boolean hascurp) {
-        this.hascurp = hascurp;
-    }
-
-    public boolean isHasine() {
-        return hasine;
-    }
-
-    public void setHasine(boolean hasine) {
-        this.hasine = hasine;
-    }
+   
 
     @XmlTransient
     @JsonIgnore
