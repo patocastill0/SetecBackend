@@ -119,9 +119,10 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
     }
     
     public Object crear(TrabajadorDTO trabajadorDTO) {
-        if((trabajadordao.existsById(trabajadorDTO.getIdtrabajador())))
+        System.out.println(trabajadorDTO.getCurp()+"esta es la curp");
+        if((personadao.existsById(trabajadorDTO.getCurp())))
             return 0;// significa que el empleado ya existe por la curp
-        if((!trabajadordao.existsById(trabajadorDTO.getIdtrabajador()))){
+        if((!personadao.existsById(trabajadorDTO.getCurp()))){
             Trabajador trabajador= mapearEntidad(trabajadorDTO);
             Trabajador nuevoTrabajador=trabajadordao.save(trabajador);
             TrabajadorDTO tipotrabajador= mapearDTO(nuevoTrabajador);
@@ -257,7 +258,7 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
         
         Persona personaguardada = personadao.save(persona);
         trabajador.setIdtrabajador(trabajadordto.getCurp());
-        trabajador.setPersona(personaguardada);
+        trabajador.setPersona(personaguardada); 
                       
                 
         Sector sector = sectordao.findById(trabajadordto.getSector()).orElse(null);
