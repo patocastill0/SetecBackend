@@ -71,13 +71,24 @@ public class TrabajadorControlador {
         return ResponseEntity.ok(cdcsser.findById(id));
     }
     
-    @PostMapping()
+    /**@PostMapping()
     public ResponseEntity <TrabajadorDTO> añadirTrabajador(@RequestBody TrabajadorDTO trabajadordto){
         TrabajadorDTO trabajadorDTO = trabajadorser.save(trabajadordto);
         if(trabajadorDTO == null)
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         else
             return new ResponseEntity<>(trabajadorDTO,HttpStatus.OK);
+    }*/
+
+    @PostMapping()
+    public ResponseEntity<TrabajadorDTO> crearEmpleado(@RequestBody TrabajadorDTO  trabajadordto) {
+        Object obj=trabajadorser.crear(trabajadordto);
+        if(!(obj instanceof TrabajadorDTO)){
+            if((int)obj ==0){
+                return new ResponseEntity<>(null, HttpStatus.FOUND);}
+        }
+        return new ResponseEntity<>((TrabajadorDTO)obj, HttpStatus.CREATED);
+
     }
     @GetMapping("/page/{page}")
     public entidadRespuesta<TrabajadorDTO> listar(@PathVariable Integer page, @RequestParam(value = "pageSize", 
