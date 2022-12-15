@@ -15,12 +15,13 @@ public class TrabajadorCursoDTO {
     private String idtrabajador;   
     private String nombreTrabajador;
     private Integer cdc;
+    private Integer idinstructor;
     public TrabajadorCursoDTO() {
         
     }
 
     public TrabajadorCursoDTO(Integer idtrabajadorCurso, String anio, String codigocurso, String horaFin, String horaInicio, String periodo, Integer idcurso, String nombrecurso, String idtrabajador,
-                              String nombreTrabajador, Integer cdc) {
+                              String nombreTrabajador, Integer cdc, Integer idinstructor) {
         this.idtrabajadorCurso = idtrabajadorCurso;
         this.anio = anio;
         this.codigocurso = codigocurso;
@@ -32,6 +33,7 @@ public class TrabajadorCursoDTO {
         this.idtrabajador = idtrabajador;
         this.nombreTrabajador=nombreTrabajador;
         this.cdc=cdc;
+        this.idinstructor=idinstructor;
         
     }
 
@@ -124,6 +126,14 @@ public class TrabajadorCursoDTO {
 
     public void setCdc(Integer cdc) {
         this.cdc = cdc;
+    }
+
+    public Integer getIdinstructor() {
+        return idinstructor;
+    }
+
+    public void setIdinstructor(Integer idinstructor) {
+        this.idinstructor = idinstructor;
     }
     
 }

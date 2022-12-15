@@ -33,6 +33,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Curso.findByNombreCurso", query = "SELECT c FROM Curso c WHERE c.nombreCurso = :nombreCurso")})
 public class Curso implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcurso")
+    private List<InstructorCurso> instructorCursoList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -106,6 +109,16 @@ public class Curso implements Serializable {
     @Override
     public String toString() {
         return "com.agremiados.setec.modelo.Curso[ idcurso=" + idcurso + " ]";
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public List<InstructorCurso> getInstructorCursoList() {
+        return instructorCursoList;
+    }
+
+    public void setInstructorCursoList(List<InstructorCurso> instructorCursoList) {
+        this.instructorCursoList = instructorCursoList;
     }
     
 }

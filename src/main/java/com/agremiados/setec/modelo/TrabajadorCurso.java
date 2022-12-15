@@ -37,6 +37,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TrabajadorCurso.findCusosByTrabajador", query = "SELECT t FROM TrabajadorCurso t WHERE t.idtrabajador.idtrabajador = :curp")})
 public class TrabajadorCurso implements Serializable {
 
+    @JoinColumn(name = "idinstructor", referencedColumnName = "idcurso_instructor")
+    @ManyToOne(optional = false)
+    private Instructor idinstructor;
+
     @JoinColumn(name = "cdc", referencedColumnName = "id_cdcs")
     @ManyToOne(optional = false)
     private Cdcs cdc;
@@ -184,6 +188,14 @@ public class TrabajadorCurso implements Serializable {
 
     public void setIdcurso(Curso idcurso) {
         this.idcurso = idcurso;
+    }
+
+    public Instructor getIdinstructor() {
+        return idinstructor;
+    }
+
+    public void setIdinstructor(Instructor idinstructor) {
+        this.idinstructor = idinstructor;
     }
     
 }
