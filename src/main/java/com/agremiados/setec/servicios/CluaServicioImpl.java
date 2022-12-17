@@ -66,7 +66,7 @@ public class CluaServicioImpl implements Crud<CluaDTO>{
 
     @Override
     public entidadRespuesta<CluaDTO> findAll(int numeroDePagina, int medidaDePagina) {
-        Pageable pageable = PageRequest.of(numeroDePagina, medidaDePagina);
+       Pageable pageable = PageRequest.of(numeroDePagina, medidaDePagina);
        Page<Clua> cluaPage = cluadao.findAll(pageable);
        List<Clua> listaCluas = cluaPage.getContent();
        List<CluaDTO> listaCluaDTO= new ArrayList<>();

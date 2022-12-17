@@ -102,7 +102,7 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
         trabajacursoDTO.setIdcurso(trabajadorcurso.getIdcurso().getIdcurso());
         //trabajacursoDTO.setNombrecurso(trabajadorcurso.getIdcurso().getNombreCurso());
         trabajacursoDTO.setIdtrabajador(trabajadorcurso.getIdtrabajador().getIdtrabajador());
-        
+        //trabajacursoDTO.setIdinstructor(trabajadorcurso.getIdinstructor().getIdcursoInstructor());
         return trabajacursoDTO;
     }
     
@@ -178,6 +178,37 @@ public class TrabajadorCursoServicioImpl implements Crud<TrabajadorCursoDTO>{
     public List<TrabajadorCursoDTO>findCusosByTrabajador(String curp){
         Integer curso;
         List<TrabajadorCurso> listaCursos = trabajadorcursodao.findCusosByTrabajador(curp);
+        List<TrabajadorCursoDTO> listaCursosDTO= new ArrayList<>();
+
+        for(TrabajadorCurso trabajadorcurso : listaCursos){
+            if(trabajadorcurso.getCodigocurso()!=null){
+                curso=trabajadorcurso.getIdcurso().getIdcurso();
+
+                listaCursosDTO.add(new TrabajadorCursoDTO(
+                        trabajadorcurso.getIdtrabajadorCurso(),
+                        trabajadorcurso.getAnio(),
+                        trabajadorcurso.getCodigocurso(),
+                        trabajadorcurso.getHoraFin(),
+                        trabajadorcurso.getHoraInicio(),
+                        trabajadorcurso.getPeriodo(),
+                        trabajadorcurso.getIdcurso().getIdcurso(),
+                        trabajadorcurso.getIdcurso().getNombreCurso(),
+                        trabajadorcurso.getIdtrabajador().getIdtrabajador(),
+                        trabajadorcurso.getIdtrabajador().getPersona().getNombre()+
+                                " "+trabajadorcurso.getIdtrabajador().getPersona().getApPaterno()+" "+
+                                trabajadorcurso.getIdtrabajador().getPersona().getApMaterno(),
+                        trabajadorcurso.getCdc().getIdCdcs(),
+                        trabajadorcurso.getIdinstructor().getIdcursoInstructor()
+                ));
+            }
+        }
+
+        return listaCursosDTO;
+    }
+    
+    public List<TrabajadorCursoDTO>findTallerByInstructor(int cursos, int nominstructor, String mesperiodo){
+        Integer curso;
+        List<TrabajadorCurso> listaCursos = trabajadorcursodao.findTallerByInstructor(cursos,nominstructor,mesperiodo);
         List<TrabajadorCursoDTO> listaCursosDTO= new ArrayList<>();
 
         for(TrabajadorCurso trabajadorcurso : listaCursos){

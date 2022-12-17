@@ -6,8 +6,10 @@
 package com.agremiados.setec.controlador;
 
 import com.agremiados.setec.dto.CursoDTO;
+import com.agremiados.setec.dto.InstructorDTO;
 import com.agremiados.setec.dto.TrabajadorCursoDTO;
 import com.agremiados.setec.servicios.CursoServicioImpl;
+import com.agremiados.setec.servicios.InstructorServicioImpl;
 import com.agremiados.setec.servicios.TrabajadorCursoServicioImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,21 +32,27 @@ public class TrabajadorCursoControlador {
     @Autowired
     private CursoServicioImpl cursoservicio;
     
+    
     @GetMapping("/{id}")
     public ResponseEntity<TrabajadorCursoDTO> findById(@PathVariable(name="id")String id){
         return ResponseEntity.ok(trabajadorcursoservicio.findById(id));
     } 
-    
+        
     @GetMapping("/curso")
     public List<CursoDTO> listarcurso(){
         return cursoservicio.findAll();
     }
-
+    
     @GetMapping("/cursos/id_trbajador/{id}")
     public List<TrabajadorCursoDTO> cursosByTrabajador(@PathVariable(name="id")String id){
         return trabajadorcursoservicio.findCusosByTrabajador(id);
     }
-    
+    @GetMapping("/cursos/intructor/{cursos}/{nominstructor}/{mesperiodo}")
+    public List<TrabajadorCursoDTO> findTallerByInstructor(@PathVariable(name="cursos")int cursos,
+                    @PathVariable(name="nominstructor")int nominstructor,
+                    @PathVariable(name="mesperiodo") String mesperiodo){
+        return trabajadorcursoservicio.findTallerByInstructor(cursos, nominstructor, mesperiodo);
+    }
     @PostMapping()
     public ResponseEntity<TrabajadorCursoDTO> crearCurso(@RequestBody TrabajadorCursoDTO trabajadorcursodto){
         System.out.println(trabajadorcursodto.getIdtrabajadorCurso());

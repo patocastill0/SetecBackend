@@ -11,4 +11,9 @@ import java.util.List;
 @Repository
 public interface TrabajadorCursodao extends JpaRepository<TrabajadorCurso, Integer>{
         List<TrabajadorCurso> findCusosByTrabajador(@Param("curp")String curp);
+        
+        List<TrabajadorCurso> findTallerByInstructor(@Param("curso")int curso,
+                @Param("nominstructor")int nominstructor,
+                @Param("mesperiodo")String mesperiodo);
+        
 }

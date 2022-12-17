@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TrabajadorCurso.findByHoraFin", query = "SELECT t FROM TrabajadorCurso t WHERE t.horaFin = :horaFin"),
     @NamedQuery(name = "TrabajadorCurso.findByHoraInicio", query = "SELECT t FROM TrabajadorCurso t WHERE t.horaInicio = :horaInicio"),
     @NamedQuery(name = "TrabajadorCurso.findByPeriodo", query = "SELECT t FROM TrabajadorCurso t WHERE t.periodo = :periodo"),
-    @NamedQuery(name = "TrabajadorCurso.findCusosByTrabajador", query = "SELECT t FROM TrabajadorCurso t WHERE t.idtrabajador.idtrabajador = :curp")})
+    @NamedQuery(name = "TrabajadorCurso.findCusosByTrabajador", query = "SELECT t FROM TrabajadorCurso t WHERE t.idtrabajador.idtrabajador = :curp"),
+    @NamedQuery(name = "TrabajadorCurso.findTallerByInstructor", query = "SELECT t FROM TrabajadorCurso t WHERE t.idcurso.idcurso = :curso and t.idinstructor.idcursoInstructor = :nominstructor and t.periodo = :mesperiodo")})
 public class TrabajadorCurso implements Serializable {
 
     @JoinColumn(name = "idinstructor", referencedColumnName = "idcurso_instructor")

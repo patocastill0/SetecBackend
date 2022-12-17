@@ -180,8 +180,68 @@ public class TrabajadorServicioImpl implements Crud<TrabajadorDTO> {
     
     
     @Override
-    public TrabajadorDTO update(TrabajadorDTO tipo, String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public TrabajadorDTO update(TrabajadorDTO trabajadordto, String curp) {
+        
+        Trabajador trabajador = trabajadordao.findById(curp).orElse(null);
+        
+        Persona persona = trabajador.getPersona();
+               
+        //persona.setCurp(trabajadordto.getCurp());
+        persona.setApPaterno(trabajadordto.getApPaterno());       
+        persona.setApMaterno(trabajadordto.getApMaterno());
+        persona.setCalle(trabajadordto.getCalle());
+        persona.setCelular(trabajadordto.getCelular());
+        persona.setClaveElector(trabajadordto.getClaveElector());
+        persona.setColonia(trabajadordto.getColonia());
+        persona.setCorreoElectronico(trabajadordto.getCorreoElectronico());
+        persona.setCp(trabajadordto.getCp());
+        persona.setEstadoCivil(trabajadordto.getEstadoCivil());
+        persona.setFacebook(trabajadordto.getFacebook());
+        persona.setFechaNacimiento(trabajadordto.getFechaNacimiento());
+        persona.setGenero(trabajadordto.getGenero());
+        persona.setInstagram(trabajadordto.getInstagram());
+        persona.setLocalidad(trabajadordto.getLocalidad());
+        persona.setNombre(trabajadordto.getNombre());
+        persona.setNumero(trabajadordto.getNumero());
+        persona.setSeccion(trabajadordto.getSeccion());
+        persona.setTelCasa(trabajadordto.getTelCasa());
+        persona.setTipoSanguineo(trabajadordto.getTipoSanguineo());
+        persona.setTwitter(trabajadordto.getTwitter());
+        
+        Municipios municipios = municipiosdao.findById(trabajadordto.getMunicipio()).orElse(null);       
+        persona.setMunicipio(municipios);
+        
+        Persona personaguardada = personadao.save(persona);
+        trabajador.setIdtrabajador(trabajadordto.getCurp());
+        trabajador.setPersona(personaguardada); 
+                      
+                
+        Sector sector = sectordao.findById(trabajadordto.getSector()).orElse(null);
+        trabajador.setSector(sector);
+        
+        Cargo cargo = cargodao.findById(trabajadordto.getCargo()).orElse(null);
+        trabajador.setCargo(cargo);
+        
+        Region region = regiondao.findById(trabajadordto.getRegion()).orElse(null);
+        trabajador.setRegion(region);
+                     
+        Clua clua = cluadao.findById(" ").orElse(null);
+        if(clua!= null){
+            trabajador.setClua(clua);}
+        
+        Cdcs cdcs = cdcsdao.findById(trabajadordto.getCdc()).orElse(null);
+        trabajador.setCdc(cdcs);
+        
+        //trabajador.setFolio(Integer.parseInt(trabajadordto.getFolio()));
+        trabajador.setHasactanacimiento(trabajadordto.isHasactanacimiento());
+        trabajador.setHascomprobante(trabajadordto.isHascomprobante());
+        trabajador.setHascurp(trabajadordto.isHascurp());
+        trabajador.setHasine(trabajadordto.isHasine());
+        
+        Trabajador trabajadoractualizado = trabajadordao.save(trabajador);
+        
+        return  mapearDTO(trabajadoractualizado);
+        
     }
 
     @Override

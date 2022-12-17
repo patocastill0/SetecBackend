@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,6 +91,13 @@ public class TrabajadorControlador {
         return new ResponseEntity<>((TrabajadorDTO)obj, HttpStatus.CREATED);
 
     }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<TrabajadorDTO> actulizarEmpleado(@RequestBody TrabajadorDTO  trabajadordto, @PathVariable (name="id")String id){
+        TrabajadorDTO trabajadoractualizado = trabajadorser.update(trabajadordto, id);
+        return new ResponseEntity<>(trabajadoractualizado,HttpStatus.OK);
+    }
+    
     @GetMapping("/page/{page}")
     public entidadRespuesta<TrabajadorDTO> listar(@PathVariable Integer page, @RequestParam(value = "pageSize", 
             defaultValue = "40", required = false)int cantidadPagina){
